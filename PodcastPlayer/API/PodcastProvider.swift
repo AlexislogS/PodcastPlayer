@@ -29,6 +29,8 @@ extension Publisher {
 
 class PodcastProvider: ObservableObject {
   
+  let reaction = PassthroughSubject<String, Never>()
+  
   func fetchPodcast(urlPath: String) -> AnyPublisher<Podcast, Error> {
     guard let url = URL(string: urlPath) else { return Just(Podcast(title: "", imageURL: "", episodes: [])).setFailureType(to: Error.self).eraseToAnyPublisher() }
     return URLSession.shared

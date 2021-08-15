@@ -9,12 +9,15 @@ import SwiftUI
 
 struct ReactionButton: View {
   
+  @EnvironmentObject var podcastProvider: PodcastProvider
+  
   let text: String
   
   @Binding var cardPosition: CardPosition
   
   var body: some View {
     Button(action: {
+      podcastProvider.reaction.send(text.components(separatedBy: "\n").first ?? "")
       cardPosition = .bottom
     }, label: {
       HStack {
@@ -49,6 +52,8 @@ struct ReactionRow: View {
 }
 
 struct ReactionView: View {
+  
+  @EnvironmentObject var podcastProvider: PodcastProvider
   
   @Binding var cardPosition: CardPosition
   
@@ -95,7 +100,9 @@ struct ReactionView: View {
         ScrollView(.horizontal, showsIndicators: false) {
           LazyHStack(spacing: 25) {
             ForEach(emotions, id: \.self) { item in
-              Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+              Button(action: {
+                podcastProvider.reaction.send(item)
+              }, label: {
                 Text(item)
                   .font(.largeTitle)
                   .frame(width: UIScreen.main.bounds.width * 0.17, height: UIScreen.main.bounds.width * 0.17)
