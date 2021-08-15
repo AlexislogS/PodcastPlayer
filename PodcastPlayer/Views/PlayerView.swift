@@ -30,10 +30,13 @@ struct PlayerView: View {
     ZStack(alignment: .top) {
       ScrollView {
         if let url = URL(string: episode.imageURL) {
-          AsyncImage(url: url, size: CGSize(width: 105, height: 105), isFit: true)
-            .cornerRadius(15)
-            .padding(.top, 80)
-            .padding(.bottom)
+          ZStack {
+            AsyncImage(url: url, size: CGSize(width: UIScreen.main.bounds.width * 0.7, height: 90), isFit: true).blur(radius: 60)
+            AsyncImage(url: url, size: CGSize(width: 105, height: 105), isFit: true)
+              .cornerRadius(15)
+              .padding(.top, 80)
+              .padding(.bottom)
+          }
           Text(episode.title)
             .lineLimit(1)
             .foregroundColor(.white)
@@ -133,7 +136,9 @@ struct PlayerView: View {
       .animation(.interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
       SlideOverCard(position: $cardPosition) {
         VStack {
-          ReactionView(cardPosition: $cardPosition)
+          if let url = URL(string: episode.imageURL) {
+            ReactionView(cardPosition: $cardPosition, imageURL: url)
+          }
           Spacer()
         }.background(Color("background"))
         .cornerRadius(15)
@@ -184,7 +189,7 @@ struct PlayerView: View {
       Alert(title: Text(errorText ?? ""),
             dismissButton: .default(Text("OK"), action: { errorText = nil })
       )
-    })    
+    })
     .background(Color("background"))
     .edgesIgnoringSafeArea(.top)
   }

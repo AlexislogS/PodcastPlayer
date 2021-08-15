@@ -53,6 +53,7 @@ struct ReactionView: View {
   @Binding var cardPosition: CardPosition
   
   let emotions = "😂👍👎😠🤪😎".map { String($0) }
+  let imageURL: URL
   
   var body: some View {
     if cardPosition == .middle {
@@ -68,7 +69,7 @@ struct ReactionView: View {
             ReactionRow(textLeft: "😔\nГрустно", textRight: "☺️\nРадуюсь", cardPosition: $cardPosition)
             ReactionButton(text: "💸\nОпять реклама", cardPosition: $cardPosition)
             ReactionButton(text: "💩\nКакой-то бред", cardPosition: $cardPosition)
-            Spacer().frame(width: 100, height: UIScreen.main.bounds.height * 0.4)
+            Spacer().frame(width: 100, height: UIScreen.main.bounds.height * 0.33)
           }
           .frame(maxWidth: .infinity)
         }
@@ -103,7 +104,7 @@ struct ReactionView: View {
               .padding(1).background(Circle().strokeBorder().foregroundColor(.white).opacity(0.24))
             }
           }.padding(.horizontal, 25)
-        }
+        }.background(AsyncImage(url: imageURL, size: CGSize(width: UIScreen.main.bounds.width * 0.7, height: 90), isFit: true).blur(radius: 60))
         Spacer()
       }
       .frame(maxHeight: 190)
@@ -113,6 +114,6 @@ struct ReactionView: View {
 
 struct ReactionView_Previews: PreviewProvider {
   static var previews: some View {
-    ReactionView(cardPosition: .constant(.bottom))
+    ReactionView(cardPosition: .constant(.bottom), imageURL: URL(string: "")!)
   }
 }

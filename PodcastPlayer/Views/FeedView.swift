@@ -22,14 +22,15 @@ struct FeedCell: View {
           }
           VStack(alignment: .leading) {
             Text(item.title)
+              .font(.body)
+              .fontWeight(.semibold)
               .lineLimit(2)
             Spacer()
-            EmptyView()
-          }.overlay(Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-            Text("Слушать")
+            Text(item.duration)
+              .font(.callout)
               .foregroundColor(.accentColor)
-          }), alignment: .bottomLeading)
-        }.buttonStyle(PlainButtonStyle())
+          }.padding()
+        }
       })
   }
 }
@@ -55,12 +56,17 @@ struct FeedView: View {
         TextField("URL", text: $podcastPath)
           .padding()
           .zIndex(1.0)
+        Rectangle().frame(height: 1)
+          .offset(y: -20)
+          .padding(.horizontal)
+          .zIndex(1.0)
         if let podcast = podcast {
           List {
             ForEach(podcast.episodes, id: \.title) { item in
               FeedCell(item: item)
             }
           }
+          .offset(y: -20)
           .toolbar {
             ToolbarItem(placement: .principal) { // <3>
               VStack {
@@ -75,28 +81,29 @@ struct FeedView: View {
           ProgressView()
             .scaleEffect(1.5)
         }
+      }
+      .edgesIgnoringSafeArea(.bottom)
+      .alert(isPresented: .constant(errorText != nil), content: {
+        Alert(title: Text(errorText ?? ""),
+              dismissButton: .default(Text("OK"), action: { errorText = nil })
+        )
+      })
+      .onReceive(podcastProvider.fetchPodcast(urlPath: podcastPath).catch({ error -> AnyPublisher<Podcast, Error> in
+        if (error as? URLError)?.code == .badServerResponse {
+          errorText = "Сервер недоступен"
+        }
+        if (error as? URLError)?.code == .dataNotAllowed || (error as? URLError)?.code == .notConnectedToInternet {
+          errorText = "Проверьте подключение к интернету"
+        }
+        return Just(Podcast(title: "", imageURL: "", episodes: [])).setFailureType(to: Error.self).eraseToAnyPublisher()
+      }).assertNoFailure(), perform: { value in
+        withAnimation(.easeIn) {
+          self.podcast = value
+        }
+      })
+      .navigationViewStyle(StackNavigationViewStyle())
     }
-    .alert(isPresented: .constant(errorText != nil), content: {
-      Alert(title: Text(errorText ?? ""),
-            dismissButton: .default(Text("OK"), action: { errorText = nil })
-      )
-    })
-    .onReceive(podcastProvider.fetchPodcast(urlPath: podcastPath).catch({ error -> AnyPublisher<Podcast, Error> in
-      if (error as? URLError)?.code == .badServerResponse {
-        errorText = "Сервер недоступен"
-      }
-      if (error as? URLError)?.code == .dataNotAllowed || (error as? URLError)?.code == .notConnectedToInternet {
-        errorText = "Проверьте подключение к интернету"
-      }
-      return Just(Podcast(title: "", imageURL: "", episodes: [])).setFailureType(to: Error.self).eraseToAnyPublisher()
-    }).assertNoFailure(), perform: { value in
-      withAnimation(.easeIn) {
-        self.podcast = value
-      }
-    })
-    .navigationViewStyle(StackNavigationViewStyle())
   }
-}
 }
 
 struct ContentView_Previews: PreviewProvider {

@@ -81,7 +81,7 @@ enum CardPosition {
     case .middle:
       return UIScreen.main.bounds.height * 0.65
     case .bottom:
-      return UIScreen.main.bounds.height
+      return UIScreen.main.bounds.height < 600 ? UIScreen.main.bounds.height * 0.95 : UIScreen.main.bounds.height * 1.03
     }
   }
 }
