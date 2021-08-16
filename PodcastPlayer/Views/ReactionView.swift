@@ -57,7 +57,7 @@ struct ReactionView: View {
   
   @Binding var cardPosition: CardPosition
   
-  let emotions = "😂👍👎😠🤪😎".map { String($0) }
+  let emotions = "😂👍👎😠😔☺️💸💩".map { String($0) }
   let imageURL: URL
   
   var body: some View {

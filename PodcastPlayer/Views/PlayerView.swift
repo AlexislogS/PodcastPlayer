@@ -42,11 +42,14 @@ struct PlayerView: View {
             }
             Text(episode.title)
               .lineLimit(1)
-              .foregroundColor(.white)
+              .
+              foregroundColor(.white)
               .padding(.horizontal, 30)
             Text(episode.author)
               .foregroundColor(.accentColor)
-            VStack {
+              .padding(.bottom)
+            VStack(spacing: 15) {
+              ChartView(values: [213, 343, 3,  3, 344, 435, 342, 30, 213, 343, 3,  3, 344, 435, 342, 30, 213, 343, 3,  3, 344, 435, 342, 30, 213, 343, 3]).frame(height: 108).clipped()
               SliderView(value: $sliderPlayTime, isSliderTouching: $isSliderTouching, soundLevel: false, completion: {
                 guard let duration = player?.currentItem?.duration else { return }
                 let durationInSeconds = CMTimeGetSeconds(duration)
@@ -63,8 +66,12 @@ struct PlayerView: View {
                   }
                   Text(remainTime)
                 }
-              }.foregroundColor(Color("outline"))
-            }.padding(.horizontal, 30)
+              }
+              .foregroundColor(Color("outline"))
+            }
+            .padding()
+            .background(RoundedRectangle(cornerRadius: 10).foregroundColor(Color("chart")))
+            .padding(.horizontal)
             HStack(spacing: 10) {
               Button(action: {
                 switch rate {
@@ -135,7 +142,7 @@ struct PlayerView: View {
           }
           Spacer().frame(width: 100, height: UIScreen.main.bounds.height * 0.4)
         }
-        .brightness(cardPosition == .bottom ? 0 : -0.5)
+        .opacity(cardPosition == .bottom ? 1 : 0.5)
         .animation(.interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
         SlideOverCard(position: $cardPosition) {
           VStack {

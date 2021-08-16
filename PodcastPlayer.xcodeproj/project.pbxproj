@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EA03F88826C92B6400BB1FB1 /* TimeInterval+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA03F88726C92B6400BB1FB1 /* TimeInterval+.swift */; };
+		EA05D84026CAE37A0003961F /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05D83F26CAE37A0003961F /* ChartView.swift */; };
 		EA76443726C88FF000C40951 /* MPVolumeView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA76443626C88FEF00C40951 /* MPVolumeView+.swift */; };
 		EA76443926C8906800C40951 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA76443826C8906800C40951 /* SliderView.swift */; };
 		EAAC140726C7CE0100AFA3ED /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAC140626C7CE0100AFA3ED /* Episode.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		EA03F88726C92B6400BB1FB1 /* TimeInterval+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+.swift"; sourceTree = "<group>"; };
+		EA05D83F26CAE37A0003961F /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		EA76443626C88FEF00C40951 /* MPVolumeView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MPVolumeView+.swift"; sourceTree = "<group>"; };
 		EA76443826C8906800C40951 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		EAAC140626C7CE0100AFA3ED /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				EAAC140E26C7D86800AFA3ED /* AsyncImage.swift */,
 				EA76443826C8906800C40951 /* SliderView.swift */,
 				EADFDBAA26C9601F00BFB19A /* SlideOverCard.swift */,
+				EA05D83F26CAE37A0003961F /* ChartView.swift */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				EA76443926C8906800C40951 /* SliderView.swift in Sources */,
 				EACE393C26C805D40079EC44 /* PlayerView.swift in Sources */,
 				EAAC140F26C7D86800AFA3ED /* AsyncImage.swift in Sources */,
+				EA05D84026CAE37A0003961F /* ChartView.swift in Sources */,
 				EAAC140726C7CE0100AFA3ED /* Episode.swift in Sources */,
 				EAC2253E26C82B780034D446 /* UINavigationController.swift in Sources */,
 				EADFDBA726C9359900BFB19A /* AddPodcastView.swift in Sources */,
