@@ -42,14 +42,16 @@ struct PlayerView: View {
             }
             Text(episode.title)
               .lineLimit(1)
-              .
-              foregroundColor(.white)
+              .foregroundColor(.white)
               .padding(.horizontal, 30)
             Text(episode.author)
               .foregroundColor(.accentColor)
               .padding(.bottom)
             VStack(spacing: 15) {
-              ChartView(values: [213, 343, 3,  3, 344, 435, 342, 30, 213, 343, 3,  3, 344, 435, 342, 30, 213, 343, 3,  3, 344, 435, 342, 30, 213, 343, 3]).frame(height: 108).clipped()
+              ChartView(values: [213, 343, 3, 3, 344, 435, 342, 30, 213, 343, 3, 3, 344, 435, 342, 30, 213, 343, 3, 3, 344, 435, 342, 30, 213, 343, 3], playTime: $sliderPlayTime)
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 108, maxHeight: .infinity)
+                .aspectRatio(308/108, contentMode: .fit)
+                .padding(.horizontal, 100)
               SliderView(value: $sliderPlayTime, isSliderTouching: $isSliderTouching, soundLevel: false, completion: {
                 guard let duration = player?.currentItem?.duration else { return }
                 let durationInSeconds = CMTimeGetSeconds(duration)
