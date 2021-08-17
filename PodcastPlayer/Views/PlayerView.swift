@@ -27,6 +27,9 @@ struct PlayerView: View {
   @State private var isReactionViewExpanded = false
   @State private var cardPosition = CardPosition.bottom
   @State private var reaction: String?
+  @State private var emotion: Emotion?
+  @State private var reactions: [Reaction]?
+  @State private var defaultTimeStampEnd = 0
   
   var body: some View {
     ZStack {
@@ -149,7 +152,7 @@ struct PlayerView: View {
         SlideOverCard(position: $cardPosition) {
           VStack {
             if let url = URL(string: episode.imageURL) {
-              ReactionView(cardPosition: $cardPosition, imageURL: url)
+              ReactionView(cardPosition: $cardPosition, emotion: $emotion, reactions: $reactions, imageURL: url)
             }
             Spacer()
           }.background(Color("background"))
@@ -184,6 +187,8 @@ struct PlayerView: View {
       isPlaying = false
     }
     .onAppear() {
+      emotion = podcastProvider.emotion
+      getReactions()
       isReactionViewExpanded = true
       if let fileURL = URL(string: episode.fileURL) {
         do {
@@ -194,6 +199,24 @@ struct PlayerView: View {
           player?.addPeriodicTimeObserver(forInterval: interval, queue: .main) { time in
             if let currentTime = player?.currentTime() {
               let currentTimeSeconds = CMTimeGetSeconds(currentTime)
+              if let episode = emotion?.episodes.first(where: { $0.guid == episode.guid }) {
+                for reaction in episode.timed_reactions {
+                  if let min = Int(reaction.from),
+                     let max = Int(reaction.to),
+                     (min...max).contains(Int(currentTimeSeconds)),
+                     let newReactions = emotion?.reactions.filter({ reaction.available_reactions.contains($0.reaction_id) }),
+                     newReactions != reactions {
+                    reactions = newReactions
+                    defaultTimeStampEnd = max
+                    break
+                  }
+                }
+                if defaultTimeStampEnd <= Int(currentTimeSeconds),
+                   let newReactions = emotion?.reactions.filter({ episode.default_reactions.contains($0.reaction_id) }),
+                   newReactions != reactions {
+                  reactions = newReactions
+                }
+              }
               let durationSeconds = CMTimeGetSeconds(player?.currentItem?.duration ?? CMTimeMake(value: 1, timescale: 1))
               self.currentTime = currentTimeSeconds.formatSecondsToString()
               self.remainTime = (durationSeconds - currentTimeSeconds).formatSecondsToString()
@@ -229,10 +252,23 @@ struct PlayerView: View {
       player?.seek(to: seekTime)
     }
   }
+  
+  private func getReactions() {
+    reactions = emotion?.reactions ?? [
+      Reaction(reaction_id: 1, emoji: "😂", description: "Смешно!"),
+      Reaction(reaction_id: 2, emoji: "👍", description: "Отлично"),
+      Reaction(reaction_id: 3, emoji: "👎", description: "Так себе"),
+      Reaction(reaction_id: 4, emoji: "😠", description: "Злюсь"),
+      Reaction(reaction_id: 5, emoji: "😔", description: "Грустно"),
+      Reaction(reaction_id: 6, emoji: "☺️", description: "Радуюсь"),
+      Reaction(reaction_id: 7, emoji: "💸", description: "Опять реклама"),
+      Reaction(reaction_id: 8, emoji: "💩", description: "Какой-то бред!")
+    ]
+  }
 }
 
 struct PlayerView_Previews: PreviewProvider {
   static var previews: some View {
-    PlayerView(episode: Episode(title: "title", author: "author", pubDate: "", description: "", duration: "", fileURL: "", imageURL: "https://sun9-6.userapi.com/impf/k1ItkHXBu8UPzrqXiZoaA4fzqwhMLGTc1cP5zw/hdlvO9akdVk.jpg?size=1400x1400&amp;quality=96&amp;sign=505f65b68f018bf1316050ada0b36ca8&amp;type=none"))
+    PlayerView(episode: Episode(title: "title", author: "author", guid: "", pubDate: "", description: "", duration: "", fileURL: "", imageURL: "https://sun9-6.userapi.com/impf/k1ItkHXBu8UPzrqXiZoaA4fzqwhMLGTc1cP5zw/hdlvO9akdVk.jpg?size=1400x1400&amp;quality=96&amp;sign=505f65b68f018bf1316050ada0b36ca8&amp;type=none"))
   }
 }

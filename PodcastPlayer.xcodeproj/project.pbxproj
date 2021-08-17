@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		EA03F88826C92B6400BB1FB1 /* TimeInterval+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA03F88726C92B6400BB1FB1 /* TimeInterval+.swift */; };
 		EA05D84026CAE37A0003961F /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05D83F26CAE37A0003961F /* ChartView.swift */; };
+		EA28564C26CC375E00B306A6 /* podcast.json in Resources */ = {isa = PBXBuildFile; fileRef = EA28564B26CC375E00B306A6 /* podcast.json */; };
+		EA28564E26CC378900B306A6 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA28564D26CC378900B306A6 /* Emotion.swift */; };
+		EA28565026CC443900B306A6 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA28564F26CC443900B306A6 /* Array+.swift */; };
 		EA76443726C88FF000C40951 /* MPVolumeView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA76443626C88FEF00C40951 /* MPVolumeView+.swift */; };
 		EA76443926C8906800C40951 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA76443826C8906800C40951 /* SliderView.swift */; };
 		EAAC140726C7CE0100AFA3ED /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAC140626C7CE0100AFA3ED /* Episode.swift */; };
@@ -31,6 +34,9 @@
 /* Begin PBXFileReference section */
 		EA03F88726C92B6400BB1FB1 /* TimeInterval+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+.swift"; sourceTree = "<group>"; };
 		EA05D83F26CAE37A0003961F /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		EA28564B26CC375E00B306A6 /* podcast.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = podcast.json; sourceTree = "<group>"; };
+		EA28564D26CC378900B306A6 /* Emotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emotion.swift; sourceTree = "<group>"; };
+		EA28564F26CC443900B306A6 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		EA76443626C88FEF00C40951 /* MPVolumeView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MPVolumeView+.swift"; sourceTree = "<group>"; };
 		EA76443826C8906800C40951 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		EAAC140626C7CE0100AFA3ED /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
@@ -67,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				EAAC140626C7CE0100AFA3ED /* Episode.swift */,
+				EA28564D26CC378900B306A6 /* Emotion.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -74,6 +81,7 @@
 		EACE393F26C80C920079EC44 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				EA28564F26CC443900B306A6 /* Array+.swift */,
 				EAC2253D26C82B780034D446 /* UINavigationController.swift */,
 				EA03F88726C92B6400BB1FB1 /* TimeInterval+.swift */,
 				EA76443626C88FEF00C40951 /* MPVolumeView+.swift */,
@@ -86,6 +94,7 @@
 			children = (
 				EAD0505926C6F7CD00C2810D /* Assets.xcassets */,
 				EACE393726C804270079EC44 /* LaunchScreen.storyboard */,
+				EA28564B26CC375E00B306A6 /* podcast.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -245,6 +254,7 @@
 			files = (
 				EACE393826C804270079EC44 /* LaunchScreen.storyboard in Resources */,
 				EAD0505D26C6F7CD00C2810D /* Preview Assets.xcassets in Resources */,
+				EA28564C26CC375E00B306A6 /* podcast.json in Resources */,
 				EAD0505A26C6F7CD00C2810D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,6 +269,7 @@
 				EAAC140D26C7D7B700AFA3ED /* ImageLoader.swift in Sources */,
 				EAD0506526C6F7F000C2810D /* PodcastProvider.swift in Sources */,
 				EAD0505826C6F7CB00C2810D /* FeedView.swift in Sources */,
+				EA28564E26CC378900B306A6 /* Emotion.swift in Sources */,
 				EA76443726C88FF000C40951 /* MPVolumeView+.swift in Sources */,
 				EA76443926C8906800C40951 /* SliderView.swift in Sources */,
 				EACE393C26C805D40079EC44 /* PlayerView.swift in Sources */,
@@ -268,6 +279,7 @@
 				EAC2253E26C82B780034D446 /* UINavigationController.swift in Sources */,
 				EADFDBA726C9359900BFB19A /* AddPodcastView.swift in Sources */,
 				EA03F88826C92B6400BB1FB1 /* TimeInterval+.swift in Sources */,
+				EA28565026CC443900B306A6 /* Array+.swift in Sources */,
 				EADFDBA926C950A100BFB19A /* ReactionView.swift in Sources */,
 				EAD0505626C6F7CB00C2810D /* PodcastPlayerApp.swift in Sources */,
 				EAAC140926C7CE1600AFA3ED /* XMLParser.swift in Sources */,

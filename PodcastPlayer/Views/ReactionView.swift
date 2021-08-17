@@ -46,7 +46,9 @@ struct ReactionRow: View {
   var body: some View {
     HStack(spacing: 15) {
       ReactionButton(text: textLeft, cardPosition: $cardPosition)
-      ReactionButton(text: textRight, cardPosition: $cardPosition)
+      if textRight != "\n" {
+        ReactionButton(text: textRight, cardPosition: $cardPosition)
+      }
     }
   }
 }
@@ -56,8 +58,9 @@ struct ReactionView: View {
   @EnvironmentObject var podcastProvider: PodcastProvider
   
   @Binding var cardPosition: CardPosition
+  @Binding var emotion: Emotion?
+  @Binding var reactions: [Reaction]?
   
-  let emotions = "😂👍👎😠😔☺️💸💩".map { String($0) }
   let imageURL: URL
   
   var body: some View {
@@ -69,14 +72,25 @@ struct ReactionView: View {
           .padding(.vertical)
         ScrollView {
           VStack(alignment: .leading, spacing: 15) {
-            ReactionRow(textLeft: "😂\nСмешно!", textRight: "👍\nОтлично", cardPosition: $cardPosition)
-            ReactionRow(textLeft: "👎\nТак себе", textRight: "😠\nЗлюсь", cardPosition: $cardPosition)
-            ReactionRow(textLeft: "😔\nГрустно", textRight: "☺️\nРадуюсь", cardPosition: $cardPosition)
-            ReactionButton(text: "💸\nОпять реклама", cardPosition: $cardPosition)
-            ReactionButton(text: "💩\nКакой-то бред", cardPosition: $cardPosition)
+            if let reaction = reactions?[unsafe: 0] {
+              ReactionRow(textLeft: "\(reaction.emoji)\n\(reaction.description)", textRight: "\(reactions?[unsafe: 1]? .emoji ?? "")\n\(reactions?[unsafe: 1]? .description ?? "")", cardPosition: $cardPosition)
+            }
+            if let reaction = reactions?[unsafe: 2] {
+              ReactionRow(textLeft: "\(reaction.emoji)\n\(reaction.description)", textRight: "\(reactions?[unsafe: 3]? .emoji ?? "")\n\(reactions?[unsafe: 3]? .description ?? "")", cardPosition: $cardPosition)
+            }
+            if let reaction = reactions?[unsafe: 4] {
+              ReactionRow(textLeft: "\(reaction.emoji)\n\(reaction.description)", textRight: "\(reactions?[unsafe: 5]? .emoji ?? "")\n\(reactions?[unsafe: 5]? .description ?? "")", cardPosition: $cardPosition)
+            }
+            if let reaction = reactions?[unsafe: 6] {
+              ReactionButton(text: "\(reaction.emoji)\n\(reaction.description)", cardPosition: $cardPosition)
+            }
+            if let reaction = reactions?[unsafe: 7] {
+              ReactionButton(text: "\(reaction.emoji)\n\(reaction.description)", cardPosition: $cardPosition)
+            }
             Spacer().frame(width: 100, height: UIScreen.main.bounds.height * 0.33)
           }
           .frame(maxWidth: .infinity)
+          .padding(.horizontal)
         }
       }
       .padding(.bottom, 20)
@@ -99,7 +113,7 @@ struct ReactionView: View {
           .font(.system(size: 20, weight: .semibold, design: .default))
         ScrollView(.horizontal, showsIndicators: false) {
           LazyHStack(spacing: 25) {
-            ForEach(emotions, id: \.self) { item in
+            ForEach(reactions?.map { $0.emoji } ?? [], id: \.self) { item in
               Button(action: {
                 podcastProvider.reaction.send(item)
               }, label: {
@@ -121,6 +135,6 @@ struct ReactionView: View {
 
 struct ReactionView_Previews: PreviewProvider {
   static var previews: some View {
-    ReactionView(cardPosition: .constant(.bottom), imageURL: URL(string: "")!)
+    ReactionView(cardPosition: .constant(.bottom), emotion: .constant(nil), reactions: .constant(nil), imageURL: URL(string: "")!)
   }
 }

@@ -14,6 +14,7 @@ struct Podcast {
 struct Episode {
   let title: String
   let author: String
+  let guid: String
   let pubDate: String
   let description: String
   let duration: String
