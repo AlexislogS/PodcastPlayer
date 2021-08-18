@@ -7,6 +7,25 @@
 
 import SwiftUI
 
+struct StatHeader: View {
+  
+  var body: some View {
+    Divider().frame(height: 1)
+      .padding(.bottom)
+    Text("Реакции")
+      .padding(.bottom)
+      .foregroundColor(.white)
+    HStack {
+      Text("Динамика реакций на подкаст")
+        .foregroundColor(Color("statText"))
+      Spacer()
+      Text("8%")
+        .foregroundColor(.white)
+    }
+    .padding(.bottom)
+  }
+}
+
 struct StatReactionRow: View {
   
   let emotion: String
@@ -18,10 +37,38 @@ struct StatReactionRow: View {
       Image("check")
       Text(emotion)
       Text(description)
+        .foregroundColor(.white)
       Circle().foregroundColor(.accentColor).frame(width: 6, height: 6)
       Spacer()
       Text(String(value) + "K")
         .foregroundColor(Color("statText"))
+    }
+  }
+}
+
+struct StatPieResult: View {
+  
+  let text: String
+  let value: Double
+  let amount: String
+  
+  var body: some View {
+    VStack {
+      HStack {
+        Circle().foregroundColor(Color("pie")).frame(width: 8, height: 8)
+        HStack {
+          Text(amount)
+            .font(.system(size: 17, weight: .regular, design: .default))
+          Text("· \(String(format: "%.0f", value))%")
+            .foregroundColor(Color("statText"))
+        }
+        .foregroundColor(.white)
+        .lineLimit(1)
+        .minimumScaleFactor(0.3)
+      }
+      Text(text)
+        .foregroundColor(Color("statText"))
+        .font(.system(size: 13, weight: .regular, design: .default))
     }
   }
 }
@@ -35,19 +82,7 @@ struct StatView: View {
   var body: some View {
     ScrollView {
       VStack(alignment: .leading, spacing: 8) {
-        Divider().frame(height: 1)
-          .padding(.bottom)
-        Text("Реакции")
-          .padding(.bottom)
-          .foregroundColor(.white)
-        HStack {
-          Text("Динамика реакций на подкаст")
-            .foregroundColor(Color("statText"))
-          Spacer()
-          Text("8%")
-            .foregroundColor(.white)
-        }
-        .padding(.bottom)
+        StatHeader()
         BarChart(dataPoints: data)
           .frame(height: 150)
           .padding(.bottom, 10)
@@ -71,11 +106,26 @@ struct StatView: View {
             Text("Остальные реакции")
           }
         }.padding(.bottom)
-        Text("Данные сравниваются за одинаковые промежутки времени в прошлом")
-        Text("Пол и возраст")
-          .padding(.bottom)
-          .foregroundColor(.white)
-      }
+        Group {
+          Text("Данные сравниваются за одинаковые промежутки времени в прошлом")
+            .foregroundColor(.white)
+            .padding(.bottom)
+          Divider().frame(height: 1)
+            .padding(.bottom)
+          Text("Пол и возраст")
+            .padding(.bottom)
+            .foregroundColor(.white)
+          PieChart(dataPoints: [DataPoint(value: 15.4, color: Color("pie")),
+                                DataPoint(value: 84.6, color: Color("stat"))])
+            .frame(height: 164)
+            .padding(.bottom)
+        }
+        HStack(spacing: 8) {
+          StatPieResult(text: "Мужчины", value: 15.4, amount: "8,4K")
+          Spacer()
+          StatPieResult(text: "Женщины", value: 84.6, amount: "18,4K")
+        }.padding(.horizontal, 30)
+      }.padding(.bottom, UIScreen.main.bounds.height < 600 ? 100 : 140)
       .toolbar {
         ToolbarItem(placement: .principal) {
           VStack {

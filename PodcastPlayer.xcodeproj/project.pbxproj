@@ -128,8 +128,6 @@
 				EAAC140E26C7D86800AFA3ED /* AsyncImage.swift */,
 				EA76443826C8906800C40951 /* SliderView.swift */,
 				EADFDBAA26C9601F00BFB19A /* SlideOverCard.swift */,
-				EAE567D426CD9C7600B0E8DD /* PieChart.swift */,
-				EAE567D626CD9F9700B0E8DD /* BarChart.swift */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -221,6 +219,8 @@
 			children = (
 				EAE567CF26CD821600B0E8DD /* StatView.swift */,
 				EA05D83F26CAE37A0003961F /* PlayerChartView.swift */,
+				EAE567D626CD9F9700B0E8DD /* BarChart.swift */,
+				EAE567D426CD9C7600B0E8DD /* PieChart.swift */,
 			);
 			path = Stat;
 			sourceTree = "<group>";
