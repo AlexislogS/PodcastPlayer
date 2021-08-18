@@ -20,7 +20,7 @@ struct PlayerChartView: View {
           let max = values.max() ?? 0
           let width = (reader.size.width / CGFloat(values.count + 1))
           let delta = Float(values.count) * playTime
-          RoundedRectangle(cornerRadius: width / 2)
+          Capsule()
             .foregroundColor(.accentColor)
             .frame(width: width, height: CGFloat(values[value]) / CGFloat(max) * reader.size.height)
             .opacity(Float(value) > delta ? 0.5 : 1)

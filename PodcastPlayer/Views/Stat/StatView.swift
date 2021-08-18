@@ -73,11 +73,51 @@ struct StatPieResult: View {
   }
 }
 
+struct EmotionAgeRow: View {
+  
+  let age: String
+  let emotions: String
+  let firstValue: CGFloat
+  let lastValue: CGFloat
+  
+  var body: some View {
+    GeometryReader { reader in
+      HStack(spacing: 5) {
+        HStack {
+          Text(age)
+          Text(emotions)
+        }
+        .font(.system(size: 17, weight: .regular, design: .default))
+        .lineLimit(1)
+        .foregroundColor(.white)
+        Spacer()
+        VStack(alignment: .leading) {
+          HStack {
+            Capsule()
+              .foregroundColor(Color("pie"))
+              .frame(width: firstValue * reader.size.width * 0.3, height: 5)
+            Text(String(format: "%.0f", Double(firstValue * 100)) + "%")
+              .foregroundColor(Color("statText"))
+          }
+          HStack {
+            Capsule()
+              .foregroundColor(Color("stat"))
+              .frame(width: lastValue * reader.size.width * 0.3, height: 5)
+            Text(String(format: "%.0f", Double(lastValue * 100)) + "%")
+              .foregroundColor(Color("statText"))
+              .fixedSize(horizontal: true, vertical: false)
+          }
+        }
+      }
+    }
+  }
+}
+
 struct StatView: View {
   
   @State private var reactionsExpanded = false
   
-  var data: [DataPoint] = (2...25).map { DataPoint(value: Double($0 * Int.random(in: 10...100)), color: Color("stat"))}
+  let data: [DataPoint] = (2...25).map { DataPoint(value: Double($0 * Int.random(in: 10...100)), color: Color("stat")) }
   
   var body: some View {
     ScrollView {
@@ -119,12 +159,22 @@ struct StatView: View {
                                 DataPoint(value: 84.6, color: Color("stat"))])
             .frame(height: 164)
             .padding(.bottom)
-        }
         HStack(spacing: 8) {
           StatPieResult(text: "Мужчины", value: 15.4, amount: "8,4K")
           Spacer()
           StatPieResult(text: "Женщины", value: 84.6, amount: "18,4K")
         }.padding(.horizontal, 30)
+        Divider().frame(height: 1)
+          .padding(.bottom)
+        EmotionAgeRow(age: "до 18", emotions: "👍👎😎", firstValue: 0.5, lastValue: 1)
+          .padding(.bottom)
+        }
+        Text("Данные сравниваются за одинаковые промежутки времени в прошлом")
+          .font(.system(size: 13, weight: .regular, design: .default))
+          .foregroundColor(Color("statText"))
+          .padding(.bottom)
+        Divider().frame(height: 1)
+          .padding(.bottom)
       }.padding(.bottom, UIScreen.main.bounds.height < 600 ? 100 : 140)
       .toolbar {
         ToolbarItem(placement: .principal) {

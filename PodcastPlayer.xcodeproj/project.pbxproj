@@ -210,6 +210,7 @@
 			children = (
 				EACE393B26C805D40079EC44 /* PlayerView.swift */,
 				EADFDBA826C950A100BFB19A /* ReactionView.swift */,
+				EA05D83F26CAE37A0003961F /* PlayerChartView.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -218,7 +219,6 @@
 			isa = PBXGroup;
 			children = (
 				EAE567CF26CD821600B0E8DD /* StatView.swift */,
-				EA05D83F26CAE37A0003961F /* PlayerChartView.swift */,
 				EAE567D626CD9F9700B0E8DD /* BarChart.swift */,
 				EAE567D426CD9C7600B0E8DD /* PieChart.swift */,
 			);
