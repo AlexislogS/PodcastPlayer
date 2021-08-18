@@ -1,5 +1,5 @@
 //
-//  ChartView.swift
+//  PlayerChartView.swift
 //  PodcastPlayer
 //
 //  Created by Alex Yatsenko on 16.08.2021.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ChartView: View {
+struct PlayerChartView: View {
   
   let values: [Int]
   
@@ -33,6 +33,6 @@ struct ChartView: View {
 
 struct ChartView_Previews: PreviewProvider {
   static var previews: some View {
-    ChartView(values: [213, 343, 3, 3, 344, 435, 342, 30, 213, 343, 3, 3, 344, 435, 342, 30, 213, 343, 3, 3, 344, 435, 342, 30, 213, 343, 3], playTime: .constant(0))
+    PlayerChartView(values: [213, 343, 3, 3, 344, 435, 342, 30, 213, 343, 3, 3, 344, 435, 342, 30, 213, 343, 3, 3, 344, 435, 342, 30, 213, 343, 3], playTime: .constant(0))
   }
 }

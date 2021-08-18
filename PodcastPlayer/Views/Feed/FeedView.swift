@@ -68,7 +68,7 @@ struct FeedView: View {
           }
           .offset(y: -20)
           .toolbar {
-            ToolbarItem(placement: .principal) { // <3>
+            ToolbarItem(placement: .principal) {
               VStack {
                 Text(podcast.title).font(.headline)
                 Text(String(podcast.episodes.count) + " эпизодов").font(.subheadline)

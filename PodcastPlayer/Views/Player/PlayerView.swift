@@ -56,7 +56,7 @@ struct PlayerView: View {
               .foregroundColor(.accentColor)
               .padding(.bottom)
             VStack(spacing: 15) {
-              ChartView(values: [213, 343, 3, 3, 344, 435, 342, 30, 213, 343, 3, 3, 344, 435, 342, 30, 213, 343, 3, 3, 344, 435, 342, 30, 213, 343, 3], playTime: $sliderPlayTime)
+              PlayerChartView(values: [213, 343, 3, 3, 344, 435, 342, 30, 213, 343, 3, 3, 344, 435, 342, 30, 213, 343, 3, 3, 344, 435, 342, 30, 213, 343, 3], playTime: $sliderPlayTime)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 108, maxHeight: .infinity)
                 .aspectRatio(308/108, contentMode: .fit)
                 .padding(.horizontal, 100)
@@ -195,7 +195,7 @@ struct PlayerView: View {
     }
     .onAppear() {
       emotion = podcastProvider.emotion
-      getReactions()
+      reactions = emotion?.reactions ?? Reaction.getReactions()
       isReactionViewExpanded = true
       if let fileURL = URL(string: episode.fileURL) {
         do {
@@ -258,19 +258,6 @@ struct PlayerView: View {
       let seekTime = CMTimeAdd(currentTime, seconds)
       player?.seek(to: seekTime)
     }
-  }
-  
-  private func getReactions() {
-    reactions = emotion?.reactions ?? [
-      Reaction(reaction_id: 1, emoji: "😂", description: "Смешно!"),
-      Reaction(reaction_id: 2, emoji: "👍", description: "Отлично"),
-      Reaction(reaction_id: 3, emoji: "👎", description: "Так себе"),
-      Reaction(reaction_id: 4, emoji: "😠", description: "Злюсь"),
-      Reaction(reaction_id: 5, emoji: "😔", description: "Грустно"),
-      Reaction(reaction_id: 6, emoji: "☺️", description: "Радуюсь"),
-      Reaction(reaction_id: 7, emoji: "💸", description: "Опять реклама"),
-      Reaction(reaction_id: 8, emoji: "💩", description: "Какой-то бред!")
-    ]
   }
 }
 

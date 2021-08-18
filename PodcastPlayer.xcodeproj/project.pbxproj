@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EA03F88826C92B6400BB1FB1 /* TimeInterval+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA03F88726C92B6400BB1FB1 /* TimeInterval+.swift */; };
-		EA05D84026CAE37A0003961F /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05D83F26CAE37A0003961F /* ChartView.swift */; };
+		EA05D84026CAE37A0003961F /* PlayerChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05D83F26CAE37A0003961F /* PlayerChartView.swift */; };
 		EA28564C26CC375E00B306A6 /* podcast.json in Resources */ = {isa = PBXBuildFile; fileRef = EA28564B26CC375E00B306A6 /* podcast.json */; };
 		EA28564E26CC378900B306A6 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA28564D26CC378900B306A6 /* Emotion.swift */; };
 		EA28565026CC443900B306A6 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA28564F26CC443900B306A6 /* Array+.swift */; };
@@ -26,15 +26,16 @@
 		EAD0505A26C6F7CD00C2810D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD0505926C6F7CD00C2810D /* Assets.xcassets */; };
 		EAD0505D26C6F7CD00C2810D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD0505C26C6F7CD00C2810D /* Preview Assets.xcassets */; };
 		EAD0506526C6F7F000C2810D /* PodcastProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD0506426C6F7F000C2810D /* PodcastProvider.swift */; };
-		EADFDBA726C9359900BFB19A /* AddPodcastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADFDBA626C9359900BFB19A /* AddPodcastView.swift */; };
 		EADFDBA926C950A100BFB19A /* ReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADFDBA826C950A100BFB19A /* ReactionView.swift */; };
 		EADFDBAB26C9601F00BFB19A /* SlideOverCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADFDBAA26C9601F00BFB19A /* SlideOverCard.swift */; };
 		EAE567D026CD821600B0E8DD /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE567CF26CD821600B0E8DD /* StatView.swift */; };
+		EAE567D526CD9C7600B0E8DD /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE567D426CD9C7600B0E8DD /* PieChart.swift */; };
+		EAE567D726CD9F9700B0E8DD /* BarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE567D626CD9F9700B0E8DD /* BarChart.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EA03F88726C92B6400BB1FB1 /* TimeInterval+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+.swift"; sourceTree = "<group>"; };
-		EA05D83F26CAE37A0003961F /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		EA05D83F26CAE37A0003961F /* PlayerChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerChartView.swift; sourceTree = "<group>"; };
 		EA28564B26CC375E00B306A6 /* podcast.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = podcast.json; sourceTree = "<group>"; };
 		EA28564D26CC378900B306A6 /* Emotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emotion.swift; sourceTree = "<group>"; };
 		EA28564F26CC443900B306A6 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
@@ -54,10 +55,11 @@
 		EAD0505C26C6F7CD00C2810D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EAD0505E26C6F7CD00C2810D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAD0506426C6F7F000C2810D /* PodcastProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastProvider.swift; sourceTree = "<group>"; };
-		EADFDBA626C9359900BFB19A /* AddPodcastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPodcastView.swift; sourceTree = "<group>"; };
 		EADFDBA826C950A100BFB19A /* ReactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionView.swift; sourceTree = "<group>"; };
 		EADFDBAA26C9601F00BFB19A /* SlideOverCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverCard.swift; sourceTree = "<group>"; };
 		EAE567CF26CD821600B0E8DD /* StatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
+		EAE567D426CD9C7600B0E8DD /* PieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
+		EAE567D626CD9F9700B0E8DD /* BarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,11 +114,9 @@
 		EACE394226C80CE40079EC44 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				EAD0505726C6F7CB00C2810D /* FeedView.swift */,
-				EADFDBA626C9359900BFB19A /* AddPodcastView.swift */,
-				EACE393B26C805D40079EC44 /* PlayerView.swift */,
-				EADFDBA826C950A100BFB19A /* ReactionView.swift */,
-				EAE567CF26CD821600B0E8DD /* StatView.swift */,
+				EAE567D826CDAFAA00B0E8DD /* Feed */,
+				EAE567D926CDAFBF00B0E8DD /* Player */,
+				EAE567DA26CDAFC700B0E8DD /* Stat */,
 				EACE394326C80CEB0079EC44 /* Generic */,
 			);
 			path = Views;
@@ -128,7 +128,8 @@
 				EAAC140E26C7D86800AFA3ED /* AsyncImage.swift */,
 				EA76443826C8906800C40951 /* SliderView.swift */,
 				EADFDBAA26C9601F00BFB19A /* SlideOverCard.swift */,
-				EA05D83F26CAE37A0003961F /* ChartView.swift */,
+				EAE567D426CD9C7600B0E8DD /* PieChart.swift */,
+				EAE567D626CD9F9700B0E8DD /* BarChart.swift */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -196,6 +197,32 @@
 				EAD0505C26C6F7CD00C2810D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EAE567D826CDAFAA00B0E8DD /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				EAD0505726C6F7CB00C2810D /* FeedView.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		EAE567D926CDAFBF00B0E8DD /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				EACE393B26C805D40079EC44 /* PlayerView.swift */,
+				EADFDBA826C950A100BFB19A /* ReactionView.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		EAE567DA26CDAFC700B0E8DD /* Stat */ = {
+			isa = PBXGroup;
+			children = (
+				EAE567CF26CD821600B0E8DD /* StatView.swift */,
+				EA05D83F26CAE37A0003961F /* PlayerChartView.swift */,
+			);
+			path = Stat;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,16 +304,17 @@
 				EA76443926C8906800C40951 /* SliderView.swift in Sources */,
 				EACE393C26C805D40079EC44 /* PlayerView.swift in Sources */,
 				EAAC140F26C7D86800AFA3ED /* AsyncImage.swift in Sources */,
-				EA05D84026CAE37A0003961F /* ChartView.swift in Sources */,
+				EA05D84026CAE37A0003961F /* PlayerChartView.swift in Sources */,
+				EAE567D526CD9C7600B0E8DD /* PieChart.swift in Sources */,
 				EAAC140726C7CE0100AFA3ED /* Episode.swift in Sources */,
 				EAE567D026CD821600B0E8DD /* StatView.swift in Sources */,
 				EAC2253E26C82B780034D446 /* UINavigationController.swift in Sources */,
-				EADFDBA726C9359900BFB19A /* AddPodcastView.swift in Sources */,
 				EA03F88826C92B6400BB1FB1 /* TimeInterval+.swift in Sources */,
 				EA28565026CC443900B306A6 /* Array+.swift in Sources */,
 				EADFDBA926C950A100BFB19A /* ReactionView.swift in Sources */,
 				EAD0505626C6F7CB00C2810D /* PodcastPlayerApp.swift in Sources */,
 				EAAC140926C7CE1600AFA3ED /* XMLParser.swift in Sources */,
+				EAE567D726CD9F9700B0E8DD /* BarChart.swift in Sources */,
 				EADFDBAB26C9601F00BFB19A /* SlideOverCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

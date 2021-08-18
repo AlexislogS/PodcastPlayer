@@ -11,6 +11,19 @@ struct Reaction: Decodable, Equatable {
   let reaction_id: Int
   let emoji: String
   let description: String
+  
+  static func getReactions() -> [Reaction] {
+    return [
+      Reaction(reaction_id: 1, emoji: "😂", description: "Смешно!"),
+      Reaction(reaction_id: 2, emoji: "👍", description: "Отлично"),
+      Reaction(reaction_id: 3, emoji: "👎", description: "Так себе"),
+      Reaction(reaction_id: 4, emoji: "😠", description: "Злюсь"),
+      Reaction(reaction_id: 5, emoji: "😔", description: "Грустно"),
+      Reaction(reaction_id: 6, emoji: "☺️", description: "Радуюсь"),
+      Reaction(reaction_id: 7, emoji: "💸", description: "Опять реклама"),
+      Reaction(reaction_id: 8, emoji: "💩", description: "Какой-то бред!")
+    ]
+  }
 }
 
 struct TimedReactions: Decodable {
