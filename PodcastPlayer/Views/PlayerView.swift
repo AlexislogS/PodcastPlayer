@@ -30,11 +30,16 @@ struct PlayerView: View {
   @State private var emotion: Emotion?
   @State private var reactions: [Reaction]?
   @State private var defaultTimeStampEnd = 0
+  @State private var statViewIsPresented = false
   
   var body: some View {
+    
     ZStack {
       ZStack(alignment: .top) {
         ScrollView {
+          NavigationLink(destination: StatView(),
+                         isActive: $statViewIsPresented,
+                         label: {})
           if let url = URL(string: episode.imageURL) {
             ZStack {
               AsyncImage(url: url, size: CGSize(width: UIScreen.main.bounds.width * 0.7, height: 90), isFit: true).blur(radius: 60)
@@ -166,8 +171,10 @@ struct PlayerView: View {
           .transition(.asymmetric(insertion: .scale, removal: .opacity))
       }
     }
-    .navigationBarItems(trailing: Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-      Image("analitics")
+    .navigationBarItems(trailing: Button(action: {
+      statViewIsPresented = true
+    }, label: {
+      Image("analitics").imageScale(.large).padding()
     }))
     .onChange(of: soundLevel, perform: { value in
       MPVolumeView.setVolume(value)

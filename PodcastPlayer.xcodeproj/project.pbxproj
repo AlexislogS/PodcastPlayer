@@ -29,6 +29,7 @@
 		EADFDBA726C9359900BFB19A /* AddPodcastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADFDBA626C9359900BFB19A /* AddPodcastView.swift */; };
 		EADFDBA926C950A100BFB19A /* ReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADFDBA826C950A100BFB19A /* ReactionView.swift */; };
 		EADFDBAB26C9601F00BFB19A /* SlideOverCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADFDBAA26C9601F00BFB19A /* SlideOverCard.swift */; };
+		EAE567D026CD821600B0E8DD /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE567CF26CD821600B0E8DD /* StatView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		EADFDBA626C9359900BFB19A /* AddPodcastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPodcastView.swift; sourceTree = "<group>"; };
 		EADFDBA826C950A100BFB19A /* ReactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionView.swift; sourceTree = "<group>"; };
 		EADFDBAA26C9601F00BFB19A /* SlideOverCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverCard.swift; sourceTree = "<group>"; };
+		EAE567CF26CD821600B0E8DD /* StatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				EADFDBA626C9359900BFB19A /* AddPodcastView.swift */,
 				EACE393B26C805D40079EC44 /* PlayerView.swift */,
 				EADFDBA826C950A100BFB19A /* ReactionView.swift */,
+				EAE567CF26CD821600B0E8DD /* StatView.swift */,
 				EACE394326C80CEB0079EC44 /* Generic */,
 			);
 			path = Views;
@@ -276,6 +279,7 @@
 				EAAC140F26C7D86800AFA3ED /* AsyncImage.swift in Sources */,
 				EA05D84026CAE37A0003961F /* ChartView.swift in Sources */,
 				EAAC140726C7CE0100AFA3ED /* Episode.swift in Sources */,
+				EAE567D026CD821600B0E8DD /* StatView.swift in Sources */,
 				EAC2253E26C82B780034D446 /* UINavigationController.swift in Sources */,
 				EADFDBA726C9359900BFB19A /* AddPodcastView.swift in Sources */,
 				EA03F88826C92B6400BB1FB1 /* TimeInterval+.swift in Sources */,
