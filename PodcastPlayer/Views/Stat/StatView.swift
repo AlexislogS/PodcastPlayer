@@ -19,7 +19,7 @@ struct StatHeader: View {
       Text("Динамика реакций на подкаст")
         .foregroundColor(Color("statText"))
       Spacer()
-      Text("8%")
+      Text("8 %")
         .foregroundColor(.white)
     }
     .padding(.bottom)
@@ -59,7 +59,7 @@ struct StatPieResult: View {
         HStack {
           Text(amount)
             .font(.system(size: 17, weight: .regular, design: .default))
-          Text("· \(String(format: "%.1f", value))%")
+          Text("· \(String(format: "%.1f", value)) %")
             .foregroundColor(Color("statText"))
         }
         .foregroundColor(.white)
@@ -99,7 +99,7 @@ struct EmotionAgeRow: View {
             Capsule()
               .foregroundColor(Color("pie"))
               .frame(width: CGFloat(firstValue) * reader.size.width * 0.3, height: 4)
-            Text(String(format: "%.0f", Double(firstValue * 100)) + "%")
+            Text(String(format: "%.0f", Double(firstValue * 100)) + " %")
               .foregroundColor(Color("statText"))
               .font(.system(size: 11, weight: .regular, design: .default))
               .fixedSize(horizontal: true, vertical: false)
@@ -108,7 +108,7 @@ struct EmotionAgeRow: View {
             Capsule()
               .foregroundColor(Color("stat"))
               .frame(width: CGFloat(lastValue) * reader.size.width * 0.3, height: 4)
-            Text(String(format: "%.1f", Double(lastValue * 100)) + "%")
+            Text(String(format: "%.1f", Double(lastValue * 100)) + " %")
               .foregroundColor(Color("statText"))
               .font(.system(size: 11, weight: .regular, design: .default))
               .fixedSize(horizontal: true, vertical: false)
@@ -119,12 +119,59 @@ struct EmotionAgeRow: View {
   }
 }
 
+struct CityRowView: View {
+  
+  let city: String
+  let amount: Double
+  let value: Double
+  let color: Color
+  
+  var body: some View {
+    GeometryReader { reader in
+      HStack(spacing: 15) {
+        HStack(spacing: 5) {
+          Text(city)
+            .foregroundColor(.white)
+            .font(.system(size: 15, weight: .regular, design: .default))
+          Spacer()
+          Text(String(amount) + "K")
+            .foregroundColor(Color("statText"))
+            .font(.system(size: 12, weight: .regular, design: .default))
+            .fixedSize(horizontal: true, vertical: false)
+        }
+        HStack(spacing: 15) {
+          ZStack(alignment: .leading) {
+            Capsule()
+              .foregroundColor(.clear)
+              .frame(width: reader.size.width * 0.4, height: 4)
+            Capsule()
+              .foregroundColor(color)
+              .frame(width: CGFloat(value) * reader.size.width * 0.4, height: 4)
+          }
+          Text(String(format: "%.1f", Double(value * 100)) + " %")
+            .foregroundColor(Color("statText"))
+            .font(.system(size: 11, weight: .regular, design: .default))
+            .fixedSize(horizontal: true, vertical: false)
+        }
+      }.frame(maxWidth: .infinity)
+    }
+  }
+}
+
 struct StatView: View {
   
   struct Age {
     let id = UUID()
     let first: Int
     let last: Int
+  }
+  
+  struct City {
+    let id = UUID()
+    let name: String
+    let amount: Double
+    let value: Double
+    let color: Color
   }
   
   @State private var reactionsExpanded = false
@@ -138,19 +185,29 @@ struct StatView: View {
     Age(first: 24, last: 27),
     Age(first: 27, last: 30)
   ]
+  let cities: [City] = [
+    City(name: "Санкт-Петербург", amount: 1.4, value: 0.741, color: Color("pie")),
+    City(name: "Москва", amount: 114, value: 0.074, color: Color("orange")),
+    City(name: "Новосибирск", amount: 70, value: 0.017, color: Color("purple")),
+    City(name: "Анадырь", amount: 17, value: 0.014, color: Color("blue")),
+    City(name: "Витебск", amount: 4, value: 0.004, color: Color("green")),
+    City(name: "Другие", amount: 147, value: 0.074, color: Color("white"))
+  ]
   
   var body: some View {
     ScrollView {
       VStack(alignment: .leading, spacing: 8) {
-        StatHeader()
-        BarChart(dataPoints: data)
-          .frame(height: 150)
-          .padding(.bottom, 10)
-        Divider().frame(height: 1)
-          .padding(.bottom)
-        Text("Виды реакций")
-          .padding(.bottom)
-          .foregroundColor(.white)
+        Group {
+          StatHeader()
+          BarChart(dataPoints: data)
+            .frame(height: 150)
+            .padding(.bottom, 10)
+          Divider().frame(height: 1)
+            .padding(.bottom)
+          Text("Виды реакций")
+            .padding(.bottom)
+            .foregroundColor(.white)
+        }
         ForEach(Reaction.getReactions().prefix(reactionsExpanded ? Reaction.getReactions().count : 4), id: \.reaction_id) { reaction in
           StatReactionRow(emotion: reaction.emoji, description: reaction.description, value: 0.5)
             .padding(.bottom)
@@ -166,10 +223,11 @@ struct StatView: View {
             Text("Остальные реакции")
           }
         }.padding(.bottom)
+        Text("Данные сравниваются за одинаковые промежутки времени в прошлом")
+          .font(.system(size: 13, weight: .regular, design: .default))
+          .foregroundColor(Color("statText"))
+          .padding(.bottom)
         Group {
-          Text("Данные сравниваются за одинаковые промежутки времени в прошлом")
-            .foregroundColor(.white)
-            .padding(.bottom)
           Divider().frame(height: 1)
             .padding(.bottom)
           Text("Пол и возраст")
@@ -204,10 +262,27 @@ struct StatView: View {
               .foregroundColor(.white)
             Image("arrow")
           }.padding(.bottom, 10)
-          PieChart(dataPoints: [DataPoint(value: maleAge, color: Color("pie")),
-                                DataPoint(value: abs(1 - maleAge), color: Color("stat"))])
+          PieChart(dataPoints: cities.map { DataPoint(value: $0.value, color: $0.color) })
             .frame(height: 164)
             .padding(.bottom, 5)
+          ForEach(cities, id: \.id) { city in
+            CityRowView(city: city.name, amount: city.amount, value: city.value, color: city.color)
+              .padding(.vertical)
+          }
+        }.padding(.bottom)
+        Group {
+          Text("Данные сравниваются за одинаковые промежутки времени в прошлом")
+            .font(.system(size: 13, weight: .regular, design: .default))
+            .foregroundColor(Color("statText"))
+            .padding(.bottom)
+          Divider().frame(height: 1)
+          HStack {
+            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+              Text("Данные за 30 дней")
+              Image("arrow")
+            })
+          }.frame(maxWidth: .infinity, alignment: .center).padding(.vertical, 5)
+          Divider().frame(height: 1)
         }
       }.padding(.bottom, UIScreen.main.bounds.height < 600 ? 100 : 140)
       .toolbar {
