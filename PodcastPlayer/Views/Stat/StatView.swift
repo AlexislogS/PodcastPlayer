@@ -59,7 +59,7 @@ struct StatPieResult: View {
         HStack {
           Text(amount)
             .font(.system(size: 17, weight: .regular, design: .default))
-          Text("· \(String(format: "%.0f", value))%")
+          Text("· \(String(format: "%.1f", value))%")
             .foregroundColor(Color("statText"))
         }
         .foregroundColor(.white)
@@ -77,34 +77,40 @@ struct EmotionAgeRow: View {
   
   let age: String
   let emotions: String
-  let firstValue: CGFloat
-  let lastValue: CGFloat
+  let firstValue: Double
+  let lastValue: Double
   
   var body: some View {
     GeometryReader { reader in
       HStack(spacing: 5) {
         HStack {
           Text(age)
+            .minimumScaleFactor(0.5)
           Text(emotions)
+            .minimumScaleFactor(0.5)
         }
         .font(.system(size: 17, weight: .regular, design: .default))
         .lineLimit(1)
+        .minimumScaleFactor(0.5)
         .foregroundColor(.white)
-        Spacer()
-        VStack(alignment: .leading) {
-          HStack {
+        Spacer().frame(width: 20, height: 1)
+        VStack(alignment: .leading, spacing: 3) {
+          HStack(spacing: 15) {
             Capsule()
               .foregroundColor(Color("pie"))
-              .frame(width: firstValue * reader.size.width * 0.3, height: 5)
+              .frame(width: CGFloat(firstValue) * reader.size.width * 0.3, height: 4)
             Text(String(format: "%.0f", Double(firstValue * 100)) + "%")
               .foregroundColor(Color("statText"))
+              .font(.system(size: 11, weight: .regular, design: .default))
+              .fixedSize(horizontal: true, vertical: false)
           }
-          HStack {
+          HStack(spacing: 15) {
             Capsule()
               .foregroundColor(Color("stat"))
-              .frame(width: lastValue * reader.size.width * 0.3, height: 5)
-            Text(String(format: "%.0f", Double(lastValue * 100)) + "%")
+              .frame(width: CGFloat(lastValue) * reader.size.width * 0.3, height: 4)
+            Text(String(format: "%.1f", Double(lastValue * 100)) + "%")
               .foregroundColor(Color("statText"))
+              .font(.system(size: 11, weight: .regular, design: .default))
               .fixedSize(horizontal: true, vertical: false)
           }
         }
@@ -115,9 +121,23 @@ struct EmotionAgeRow: View {
 
 struct StatView: View {
   
+  struct Age {
+    let id = UUID()
+    let first: Int
+    let last: Int
+  }
+  
   @State private var reactionsExpanded = false
   
+  let episode: EmotionEpisode?
   let data: [DataPoint] = (2...25).map { DataPoint(value: Double($0 * Int.random(in: 10...100)), color: Color("stat")) }
+  let ages: [Age] = [
+    Age(first: 0, last: 17),
+    Age(first: 18, last: 21),
+    Age(first: 21, last: 24),
+    Age(first: 24, last: 27),
+    Age(first: 27, last: 30)
+  ]
   
   var body: some View {
     ScrollView {
@@ -155,26 +175,40 @@ struct StatView: View {
           Text("Пол и возраст")
             .padding(.bottom)
             .foregroundColor(.white)
-          PieChart(dataPoints: [DataPoint(value: 15.4, color: Color("pie")),
-                                DataPoint(value: 84.6, color: Color("stat"))])
+          PieChart(dataPoints: [DataPoint(value: maleAge, color: Color("pie")),
+                                DataPoint(value: abs(1 - maleAge), color: Color("stat"))])
             .frame(height: 164)
-            .padding(.bottom)
+            .padding(.bottom, 5)
         HStack(spacing: 8) {
-          StatPieResult(text: "Мужчины", value: 15.4, amount: "8,4K")
+          StatPieResult(text: "Мужчины", value: maleAge * 100, amount: "8,4K")
           Spacer()
-          StatPieResult(text: "Женщины", value: 84.6, amount: "18,4K")
+          StatPieResult(text: "Женщины", value: abs(1 - maleAge) * 100, amount: "18,4K")
         }.padding(.horizontal, 30)
         Divider().frame(height: 1)
           .padding(.bottom)
-        EmotionAgeRow(age: "до 18", emotions: "👍👎😎", firstValue: 0.5, lastValue: 1)
-          .padding(.bottom)
+          ForEach(ages, id: \.id) { age in
+            EmotionAgeRow(age: age.id == ages.first?.id ? "до 18" : "\(age.first)-\(age.last)", emotions: "👍👎😎", firstValue: getAge(for: age.first...age.last, male: true), lastValue: getAge(for: age.first...age.last, male: false))
+              .padding(.vertical, 10)
+          }
         }
+        .padding(.bottom)
         Text("Данные сравниваются за одинаковые промежутки времени в прошлом")
           .font(.system(size: 13, weight: .regular, design: .default))
           .foregroundColor(Color("statText"))
           .padding(.bottom)
-        Divider().frame(height: 1)
-          .padding(.bottom)
+        Group {
+          Divider().frame(height: 1)
+            .padding(.bottom, 5)
+          HStack {
+            Text("Города")
+              .foregroundColor(.white)
+            Image("arrow")
+          }.padding(.bottom, 10)
+          PieChart(dataPoints: [DataPoint(value: maleAge, color: Color("pie")),
+                                DataPoint(value: abs(1 - maleAge), color: Color("stat"))])
+            .frame(height: 164)
+            .padding(.bottom, 5)
+        }
       }.padding(.bottom, UIScreen.main.bounds.height < 600 ? 100 : 140)
       .toolbar {
         ToolbarItem(placement: .principal) {
@@ -188,10 +222,26 @@ struct StatView: View {
     .background(Color("background"))
     .edgesIgnoringSafeArea(.vertical)
   }
+  
+  private var maleAge: Double {
+    if let total = episode?.statistics?.count,
+       let males = episode?.statistics?.filter({ $0.sex == "male" }).count {
+      return Double(males) / Double(total)
+    }
+    return 0.154
+  }
+  
+  private func getAge(for range: ClosedRange<Int>, male: Bool) -> Double {
+    if let total = episode?.statistics?.count,
+       let ageCount = episode?.statistics?.filter({ range.contains($0.age) && $0.sex == (male ? "male" : "female") }).count {
+      return Double(ageCount) / Double(total) * 10
+    }
+    return Double.random(in: (0...1))
+  }
 }
 
 struct StatView_Previews: PreviewProvider {
   static var previews: some View {
-    StatView()
+    StatView(episode: nil)
   }
 }

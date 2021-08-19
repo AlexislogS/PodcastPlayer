@@ -37,7 +37,7 @@ struct PlayerView: View {
     ZStack {
       ZStack(alignment: .top) {
         ScrollView {
-          NavigationLink(destination: StatView(),
+          NavigationLink(destination: StatView(episode: emotion?.episodes.first(where: { $0.guid == episode.guid })),
                          isActive: $statViewIsPresented,
                          label: {})
           if let url = URL(string: episode.imageURL) {
