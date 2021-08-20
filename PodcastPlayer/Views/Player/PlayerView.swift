@@ -66,7 +66,7 @@ struct PlayerView: View {
                 let seekTimeInSeconds = Float64(sliderPlayTime) * durationInSeconds
                 let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, preferredTimescale: 1)
                 player?.seek(to: seekTime)
-              })
+              }).frame(height: 5)
               HStack {
                 Text(currentTime)
                 Spacer()
