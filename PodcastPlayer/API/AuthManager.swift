@@ -39,7 +39,7 @@ class AuthManager: NSObject, VKSdkDelegate, VKSdkUIDelegate, ObservableObject {
       }
       switch state {
       case .initialized:
-        VKSdk.authorize(scope)
+        print("initialized")
       case .authorized:
         self.authorized = true
       default: break
