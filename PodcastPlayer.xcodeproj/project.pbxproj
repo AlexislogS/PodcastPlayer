@@ -12,6 +12,10 @@
 		EA28564C26CC375E00B306A6 /* podcast.json in Resources */ = {isa = PBXBuildFile; fileRef = EA28564B26CC375E00B306A6 /* podcast.json */; };
 		EA28564E26CC378900B306A6 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA28564D26CC378900B306A6 /* Emotion.swift */; };
 		EA28565026CC443900B306A6 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA28564F26CC443900B306A6 /* Array+.swift */; };
+		EA72870626D034970062409B /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA72870526D034970062409B /* AuthManager.swift */; };
+		EA72870826D0365A0062409B /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA72870726D0365A0062409B /* AuthView.swift */; };
+		EA72870A26D048610062409B /* VKSdkFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA72870126D032120062409B /* VKSdkFramework.framework */; };
+		EA72870B26D048610062409B /* VKSdkFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA72870126D032120062409B /* VKSdkFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EA76443726C88FF000C40951 /* MPVolumeView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA76443626C88FEF00C40951 /* MPVolumeView+.swift */; };
 		EA76443926C8906800C40951 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA76443826C8906800C40951 /* SliderView.swift */; };
 		EAAC140726C7CE0100AFA3ED /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAC140626C7CE0100AFA3ED /* Episode.swift */; };
@@ -33,12 +37,29 @@
 		EAE567D726CD9F9700B0E8DD /* BarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE567D626CD9F9700B0E8DD /* BarChart.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		EA72870C26D048610062409B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				EA72870B26D048610062409B /* VKSdkFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		EA03F88726C92B6400BB1FB1 /* TimeInterval+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+.swift"; sourceTree = "<group>"; };
 		EA05D83F26CAE37A0003961F /* PlayerChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerChartView.swift; sourceTree = "<group>"; };
 		EA28564B26CC375E00B306A6 /* podcast.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = podcast.json; sourceTree = "<group>"; };
 		EA28564D26CC378900B306A6 /* Emotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emotion.swift; sourceTree = "<group>"; };
 		EA28564F26CC443900B306A6 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
+		EA72870126D032120062409B /* VKSdkFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VKSdkFramework.framework; path = Carthage/Build/iOS/VKSdkFramework.framework; sourceTree = "<group>"; };
+		EA72870526D034970062409B /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		EA72870726D0365A0062409B /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		EA76443626C88FEF00C40951 /* MPVolumeView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MPVolumeView+.swift"; sourceTree = "<group>"; };
 		EA76443826C8906800C40951 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		EAAC140626C7CE0100AFA3ED /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
@@ -67,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA72870A26D048610062409B /* VKSdkFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +102,22 @@
 				EA28564D26CC378900B306A6 /* Emotion.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		EA72870026D032120062409B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA72870126D032120062409B /* VKSdkFramework.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA72870926D036660062409B /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				EA72870726D0365A0062409B /* AuthView.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		EACE393F26C80C920079EC44 /* Extensions */ = {
@@ -114,6 +152,7 @@
 		EACE394226C80CE40079EC44 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EA72870926D036660062409B /* Auth */,
 				EAE567D826CDAFAA00B0E8DD /* Feed */,
 				EAE567D926CDAFBF00B0E8DD /* Player */,
 				EAE567DA26CDAFC700B0E8DD /* Stat */,
@@ -145,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				EAD0506426C6F7F000C2810D /* PodcastProvider.swift */,
+				EA72870526D034970062409B /* AuthManager.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -162,6 +202,7 @@
 			children = (
 				EAD0505426C6F7CB00C2810D /* PodcastPlayer */,
 				EAD0505326C6F7CB00C2810D /* Products */,
+				EA72870026D032120062409B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -235,6 +276,8 @@
 				EAD0504E26C6F7CB00C2810D /* Sources */,
 				EAD0504F26C6F7CB00C2810D /* Frameworks */,
 				EAD0505026C6F7CB00C2810D /* Resources */,
+				EA7286FF26D02DC60062409B /* ShellScript */,
+				EA72870C26D048610062409B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -291,12 +334,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		EA7286FF26D02DC60062409B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/VKSdkFramework.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EAD0504E26C6F7CB00C2810D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				EAAC140D26C7D7B700AFA3ED /* ImageLoader.swift in Sources */,
+				EA72870626D034970062409B /* AuthManager.swift in Sources */,
 				EAD0506526C6F7F000C2810D /* PodcastProvider.swift in Sources */,
 				EAD0505826C6F7CB00C2810D /* FeedView.swift in Sources */,
 				EA28564E26CC378900B306A6 /* Emotion.swift in Sources */,
@@ -315,6 +380,7 @@
 				EAD0505626C6F7CB00C2810D /* PodcastPlayerApp.swift in Sources */,
 				EAAC140926C7CE1600AFA3ED /* XMLParser.swift in Sources */,
 				EAE567D726CD9F9700B0E8DD /* BarChart.swift in Sources */,
+				EA72870826D0365A0062409B /* AuthView.swift in Sources */,
 				EADFDBAB26C9601F00BFB19A /* SlideOverCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -447,6 +513,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"PodcastPlayer/Preview Content\"";
 				DEVELOPMENT_TEAM = UG5F626PKK;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/PodcastPlayer/Configuration/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -457,6 +527,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = YES;
 			};
 			name = Debug;
 		};
@@ -469,6 +540,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"PodcastPlayer/Preview Content\"";
 				DEVELOPMENT_TEAM = UG5F626PKK;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/PodcastPlayer/Configuration/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -479,6 +554,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = YES;
 			};
 			name = Release;
 		};
