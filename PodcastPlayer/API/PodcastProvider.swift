@@ -8,25 +8,6 @@
 import Foundation
 import Combine
 
-extension Publisher {
-  func retryWithDelay<T, E>() -> Publishers.Catch<Self, AnyPublisher<T, E>> where T == Self.Output, E == Self.Failure {
-    return self.catch { error -> AnyPublisher<T, E> in
-      if (error as? URLError)?.code == .dataNotAllowed || (error as? URLError)?.code == .notConnectedToInternet || (error as? URLError)?.code == .badServerResponse {
-        return Publishers.Delay(
-          upstream: self,
-          interval: 1,
-          tolerance: 1,
-          scheduler: RunLoop.main).retry(1).eraseToAnyPublisher()
-      }
-      return Publishers.Delay(
-        upstream: self,
-        interval: 1,
-        tolerance: 1,
-        scheduler: RunLoop.main).retry(.max).eraseToAnyPublisher()
-    }
-  }
-}
-
 class PodcastProvider: ObservableObject {
   
   let reaction = PassthroughSubject<String, Never>()
@@ -44,6 +25,9 @@ class PodcastProvider: ObservableObject {
       .mapError({ $0 })
       .receive(on: RunLoop.main)
       .tryMap(handlePodcastData)
+      .removeDuplicates(by: { podcast1, podcast2 in
+        podcast1.episodes.map { $0.guid } == podcast2.episodes.map { $0.guid }
+      })
       .retryWithDelay()
       .eraseToAnyPublisher()
   }

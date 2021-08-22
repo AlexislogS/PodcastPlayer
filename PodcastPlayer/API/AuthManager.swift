@@ -42,6 +42,10 @@ class AuthManager: NSObject, VKSdkDelegate, VKSdkUIDelegate, ObservableObject {
         print("initialized")
       case .authorized:
         self.authorized = true
+      case .error:
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+          self?.wakeUPSession()
+        }
       default: break
       }
     }
@@ -53,7 +57,7 @@ class AuthManager: NSObject, VKSdkDelegate, VKSdkUIDelegate, ObservableObject {
   
   func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
     if result.token != nil {
-    
+      self.authorized = true
     } else {
       errorText.send("Произошла ошибка, попробуйте снова")
     }

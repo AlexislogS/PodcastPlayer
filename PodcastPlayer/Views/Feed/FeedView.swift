@@ -60,7 +60,7 @@ struct FeedView: View {
           .offset(y: -20)
           .padding(.horizontal)
           .zIndex(1.0)
-        if let podcast = podcast {
+        if let podcast = podcast, !podcast.episodes.isEmpty {
           List {
             ForEach(podcast.episodes, id: \.title) { item in
               FeedCell(item: item)

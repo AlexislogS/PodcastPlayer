@@ -33,13 +33,12 @@ struct PlayerView: View {
   @State private var statViewIsPresented = false
   
   var body: some View {
-    
     ZStack {
+      NavigationLink(destination: StatView(episode: emotion?.episodes.first(where: { $0.guid == episode.guid })),
+                     isActive: $statViewIsPresented,
+                     label: {})
       ZStack(alignment: .top) {
         ScrollView {
-          NavigationLink(destination: StatView(episode: emotion?.episodes.first(where: { $0.guid == episode.guid })),
-                         isActive: $statViewIsPresented,
-                         label: {})
           if let url = URL(string: episode.imageURL) {
             ZStack {
               AsyncImage(url: url, size: CGSize(width: UIScreen.main.bounds.width * 0.7, height: 90), isFit: true).blur(radius: 60)

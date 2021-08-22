@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EA03F88826C92B6400BB1FB1 /* TimeInterval+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA03F88726C92B6400BB1FB1 /* TimeInterval+.swift */; };
 		EA05D84026CAE37A0003961F /* PlayerChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05D83F26CAE37A0003961F /* PlayerChartView.swift */; };
+		EA076AF226D2AF300026A037 /* Publisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA076AF126D2AF300026A037 /* Publisher+.swift */; };
 		EA28564C26CC375E00B306A6 /* podcast.json in Resources */ = {isa = PBXBuildFile; fileRef = EA28564B26CC375E00B306A6 /* podcast.json */; };
 		EA28564E26CC378900B306A6 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA28564D26CC378900B306A6 /* Emotion.swift */; };
 		EA28565026CC443900B306A6 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA28564F26CC443900B306A6 /* Array+.swift */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		EA03F88726C92B6400BB1FB1 /* TimeInterval+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+.swift"; sourceTree = "<group>"; };
 		EA05D83F26CAE37A0003961F /* PlayerChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerChartView.swift; sourceTree = "<group>"; };
+		EA076AF126D2AF300026A037 /* Publisher+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+.swift"; sourceTree = "<group>"; };
 		EA28564B26CC375E00B306A6 /* podcast.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = podcast.json; sourceTree = "<group>"; };
 		EA28564D26CC378900B306A6 /* Emotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emotion.swift; sourceTree = "<group>"; };
 		EA28564F26CC443900B306A6 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				EA28564F26CC443900B306A6 /* Array+.swift */,
+				EA076AF126D2AF300026A037 /* Publisher+.swift */,
 				EAC2253D26C82B780034D446 /* UINavigationController.swift */,
 				EA03F88726C92B6400BB1FB1 /* TimeInterval+.swift */,
 				EA76443626C88FEF00C40951 /* MPVolumeView+.swift */,
@@ -360,6 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA076AF226D2AF300026A037 /* Publisher+.swift in Sources */,
 				EAAC140D26C7D7B700AFA3ED /* ImageLoader.swift in Sources */,
 				EA72870626D034970062409B /* AuthManager.swift in Sources */,
 				EAD0506526C6F7F000C2810D /* PodcastProvider.swift in Sources */,
