@@ -90,6 +90,7 @@ struct SliderView: UIViewRepresentable {
       action: #selector(Coordinator.valueChanged(_:)),
       for: .valueChanged
     )
+    slider.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
     return slider
   }
   
