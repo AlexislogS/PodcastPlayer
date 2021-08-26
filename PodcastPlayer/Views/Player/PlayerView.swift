@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import AVFoundation
+import AVKit
 import MediaPlayer
 
 struct PlayerView: View {
@@ -203,33 +203,31 @@ struct PlayerView: View {
           
           let interval = CMTimeMake(value: 1, timescale: 2)
           player?.addPeriodicTimeObserver(forInterval: interval, queue: .main) { time in
-            if let currentTime = player?.currentTime() {
-              let currentTimeSeconds = CMTimeGetSeconds(currentTime)
-              if let episode = emotion?.episodes.first(where: { $0.guid == episode.guid }) {
-                for reaction in episode.timed_reactions {
-                  if let min = Int(reaction.from),
-                     let max = Int(reaction.to),
-                     (min...max).contains(Int(currentTimeSeconds)),
-                     let newReactions = emotion?.reactions.filter({ reaction.available_reactions.contains($0.reaction_id) }),
-                     newReactions != reactions {
-                    reactions = newReactions
-                    defaultTimeStampEnd = max
-                    break
-                  }
-                }
-                if defaultTimeStampEnd <= Int(currentTimeSeconds),
-                   let newReactions = emotion?.reactions.filter({ episode.default_reactions.contains($0.reaction_id) }),
+            let currentTimeSeconds = CMTimeGetSeconds(time)
+            if let episode = emotion?.episodes.first(where: { $0.guid == episode.guid }) {
+              for reaction in episode.timed_reactions {
+                if let min = Int(reaction.from),
+                   let max = Int(reaction.to),
+                   (min...max).contains(Int(currentTimeSeconds)),
+                   let newReactions = emotion?.reactions.filter({ reaction.available_reactions.contains($0.reaction_id) }),
                    newReactions != reactions {
                   reactions = newReactions
+                  defaultTimeStampEnd = max
+                  break
                 }
               }
-              let durationSeconds = CMTimeGetSeconds(player?.currentItem?.duration ?? CMTimeMake(value: 1, timescale: 1))
-              self.currentTime = currentTimeSeconds.formatSecondsToString()
-              self.remainTime = (durationSeconds - currentTimeSeconds).formatSecondsToString()
-              if !isSliderTouching {
-                let percentage = currentTimeSeconds / durationSeconds
-                sliderPlayTime = Float(percentage)
+              if defaultTimeStampEnd <= Int(currentTimeSeconds),
+                 let newReactions = emotion?.reactions.filter({ episode.default_reactions.contains($0.reaction_id) }),
+                 newReactions != reactions {
+                reactions = newReactions
               }
+            }
+            let durationSeconds = CMTimeGetSeconds(player?.currentItem?.duration ?? CMTimeMake(value: 1, timescale: 1))
+            self.currentTime = currentTimeSeconds.formatSecondsToString()
+            self.remainTime = (durationSeconds - currentTimeSeconds).formatSecondsToString()
+            if !isSliderTouching {
+              let percentage = currentTimeSeconds / durationSeconds
+              sliderPlayTime = Float(percentage)
             }
           }
         } catch let error {
