@@ -12,8 +12,9 @@ import VKSdkFramework
 struct PodcastPlayerApp: App {
   
   @Environment(\.openURL) var openURL
-  @ObservedObject private var podcastProvider = PodcastProvider()
-  @ObservedObject private var authManager = AuthManager()
+  @StateObject private var podcastProvider = PodcastProvider()
+  @StateObject private var authManager = AuthManager()
+  @StateObject private var connectionManager = ConnectionManager()
   
   init() {
     UIScrollView.appearance().keyboardDismissMode = .interactive
@@ -26,16 +27,20 @@ struct PodcastPlayerApp: App {
   
   var body: some Scene {
     WindowGroup {
-      if authManager.authorized {
-        FeedView()
-          .environmentObject(authManager)
-          .environmentObject(podcastProvider)
+      if connectionManager.isConnected {
+        if authManager.authorized {
+          FeedView()
+            .environmentObject(authManager)
+            .environmentObject(podcastProvider)
+        } else {
+          AuthView()
+            .environmentObject(authManager)
+            .onOpenURL { url in
+              VKSdk.processOpen(url, fromApplication: UIApplication.OpenURLOptionsKey.sourceApplication.rawValue)
+            }
+        }
       } else {
-        AuthView()
-          .environmentObject(authManager)
-          .onOpenURL { url in
-            VKSdk.processOpen(url, fromApplication: UIApplication.OpenURLOptionsKey.sourceApplication.rawValue)
-          }
+       ConnectionView()
       }
     }
   }

@@ -13,6 +13,8 @@
 		EA28564C26CC375E00B306A6 /* podcast.json in Resources */ = {isa = PBXBuildFile; fileRef = EA28564B26CC375E00B306A6 /* podcast.json */; };
 		EA28564E26CC378900B306A6 /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA28564D26CC378900B306A6 /* Emotion.swift */; };
 		EA28565026CC443900B306A6 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA28564F26CC443900B306A6 /* Array+.swift */; };
+		EA45C8CD26DE46CA0033FC88 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA45C8CC26DE46CA0033FC88 /* ConnectionManager.swift */; };
+		EA6A4EBF26DE51C80001A649 /* ConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6A4EBE26DE51C80001A649 /* ConnectionView.swift */; };
 		EA72870626D034970062409B /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA72870526D034970062409B /* AuthManager.swift */; };
 		EA72870826D0365A0062409B /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA72870726D0365A0062409B /* AuthView.swift */; };
 		EA72870A26D048610062409B /* VKSdkFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA72870126D032120062409B /* VKSdkFramework.framework */; };
@@ -59,6 +61,8 @@
 		EA28564B26CC375E00B306A6 /* podcast.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = podcast.json; sourceTree = "<group>"; };
 		EA28564D26CC378900B306A6 /* Emotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emotion.swift; sourceTree = "<group>"; };
 		EA28564F26CC443900B306A6 /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
+		EA45C8CC26DE46CA0033FC88 /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
+		EA6A4EBE26DE51C80001A649 /* ConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionView.swift; sourceTree = "<group>"; };
 		EA72870126D032120062409B /* VKSdkFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VKSdkFramework.framework; path = Carthage/Build/iOS/VKSdkFramework.framework; sourceTree = "<group>"; };
 		EA72870526D034970062409B /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		EA72870726D0365A0062409B /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
@@ -170,6 +174,7 @@
 				EAAC140E26C7D86800AFA3ED /* AsyncImage.swift */,
 				EA76443826C8906800C40951 /* SliderView.swift */,
 				EADFDBAA26C9601F00BFB19A /* SlideOverCard.swift */,
+				EA6A4EBE26DE51C80001A649 /* ConnectionView.swift */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -187,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				EAD0506426C6F7F000C2810D /* PodcastProvider.swift */,
+				EA45C8CC26DE46CA0033FC88 /* ConnectionManager.swift */,
 				EA72870526D034970062409B /* AuthManager.swift */,
 			);
 			path = API;
@@ -374,7 +380,9 @@
 				EACE393C26C805D40079EC44 /* PlayerView.swift in Sources */,
 				EAAC140F26C7D86800AFA3ED /* AsyncImage.swift in Sources */,
 				EA05D84026CAE37A0003961F /* PlayerChartView.swift in Sources */,
+				EA6A4EBF26DE51C80001A649 /* ConnectionView.swift in Sources */,
 				EAE567D526CD9C7600B0E8DD /* PieChart.swift in Sources */,
+				EA45C8CD26DE46CA0033FC88 /* ConnectionManager.swift in Sources */,
 				EAAC140726C7CE0100AFA3ED /* Episode.swift in Sources */,
 				EAE567D026CD821600B0E8DD /* StatView.swift in Sources */,
 				EAC2253E26C82B780034D446 /* UINavigationController.swift in Sources */,
